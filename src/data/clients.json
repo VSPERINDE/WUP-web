@@ -1,0 +1,72 @@
+[
+    {
+      "_id": "64493808b7c5fedf98df0735",
+      "age": 32,
+      "name": "Boone Stephenson",
+      "gender": "male",
+      "city": "Fostoria",
+      "email": "boonestephenson@malathion.com",
+      "phone": "+1 (834) 574-3014",
+      "address": "841 Cook Street, Downsville, Alaska, 1518"
+    },
+    {
+      "_id": "64493808ee86c80285507fac",
+      "age": 20,
+      "name": "Leslie Sosa",
+      "gender": "female",
+      "city": "Calvary",
+      "email": "lesliesosa@malathion.com",
+      "phone": "+1 (815) 446-2432",
+      "address": "364 Division Avenue, Interlochen, Marshall Islands, 499"
+    },
+    {
+      "_id": "6449380885687737a3a5e16f",
+      "age": 31,
+      "name": "Kirsten Lindsey",
+      "gender": "female",
+      "city": "Sutton",
+      "email": "kirstenlindsey@malathion.com",
+      "phone": "+1 (946) 493-2821",
+      "address": "458 Ingraham Street, Bodega, South Dakota, 1843"
+    },
+    {
+      "_id": "64493808a32f506ab6b4c131",
+      "age": 27,
+      "name": "Mamie English",
+      "gender": "female",
+      "city": "Worton",
+      "email": "mamieenglish@malathion.com",
+      "phone": "+1 (992) 466-3100",
+      "address": "279 Flatbush Avenue, Shindler, Idaho, 8153"
+    },
+    {
+      "_id": "6449380896183a8e8263fd82",
+      "age": 30,
+      "name": "Becky Walters",
+      "gender": "female",
+      "city": "Umapine",
+      "email": "beckywalters@malathion.com",
+      "phone": "+1 (976) 563-3617",
+      "address": "471 Ridgewood Place, Brandermill, Vermont, 8757"
+    },
+    {
+      "_id": "6449380802473be46da001e0",
+      "age": 23,
+      "name": "Justice Talley",
+      "gender": "male",
+      "city": "Riegelwood",
+      "email": "justicetalley@malathion.com",
+      "phone": "+1 (847) 450-2931",
+      "address": "512 Morgan Avenue, Bourg, Kansas, 9889"
+    },
+    {
+      "_id": "64493808f06423751e8b44a3",
+      "age": 28,
+      "name": "Viola Mclean",
+      "gender": "female",
+      "city": "Inkerman",
+      "email": "violamclean@malathion.com",
+      "phone": "+1 (819) 587-3779",
+      "address": "425 Gatling Place, Nadine, Texas, 7404"
+    }
+  ]
