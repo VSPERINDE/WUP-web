@@ -10,9 +10,17 @@
 }
 
 #root {
-    height:100%;
-    width: 100%;
     position: fixed;
+    background-image: url("./assets/bg_photo_web.jpg");
+    background-size: cover;
+    background-position: center;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 }
 
 header {
@@ -94,3 +102,50 @@ sidebar ul li a span.mdi{
     font-size: 25px;
     margin: 0 15px;
 }
+
+.control {
+    width: 100%;
+    height: 50px;
+    padding: 0 16px;
+    border: 0;
+    font-size: medium;
+    background:#1c1e21 ;
+    color: #f7f7f7;
+    border-radius: 6px;
+    transition: 0.4s;
+}
+
+.logo {
+    width: 50%;
+    height: 40%;
+    padding-top: 80px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+label{
+    padding: 15px 0 5px ;
+    color: black;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+form{
+    width: 50%;
+    height: 40%;
+}
+
+.submit-button {
+    padding: 15px 0 10px ;
+    font-weight: bold;
+}
+
+.link {
+    padding-top: 15px;
+    font-size: large;
+    font-weight: bold;
+
+}
+

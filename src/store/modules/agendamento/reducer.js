@@ -2,6 +2,7 @@ import types from "./types";
 import { produce } from "immer";
 
 const INITIAL_STATE = {
+  workplaceId: localStorage.getItem("token"),
   agendamentos: [],
 };
 

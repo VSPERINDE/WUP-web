@@ -5,16 +5,15 @@ import {
   allColaboradores as allColaboradoresAction,
   resetColaborador,
 } from "./actions";
-import _const from "../../../data/const";
 import types from "./types";
 
 export function* allColaboradores() {
-  const { form } = yield select((state) => state.colaborador);
+  const { form, workplaceId } = yield select((state) => state.colaborador);
   try {
     yield put(updateColaborador({ form: { ...form, filtering: true } }));
     const { data: res } = yield call(
       api.get,
-      `/colaborador/workplace/${_const.workplaceId}`
+      `/colaborador/workplace/${workplaceId}`
     );
 
     yield put(updateColaborador({ form: { ...form, filtering: false } }));
@@ -66,7 +65,7 @@ export function* filterColaboradores() {
 }
 
 export function* addColaborador() {
-  const { form, colaborador, components, behavior } = yield select(
+  const { form, colaborador, components, behavior, workplaceId } = yield select(
     (state) => state.colaborador
   );
   try {
@@ -76,7 +75,7 @@ export function* addColaborador() {
 
     if (behavior === "create") {
       const response = yield call(api.post, "/colaborador", {
-        workplaceId: _const.workplaceId,
+        workplaceId,
         colaborador,
       });
       res = response.data;
@@ -143,12 +142,12 @@ export function* unlinkColaborador() {
 }
 
 export function* allServicos() {
-  const { form } = yield select((state) => state.colaborador);
+  const { form, workplaceId } = yield select((state) => state.colaborador);
   try {
     yield put(updateColaborador({ form: { ...form, filtering: true } }));
     const { data: res } = yield call(
       api.get,
-      `/workplace/servicos/${_const.workplaceId}`
+      `/workplace/servicos/${workplaceId}`
     );
 
     yield put(updateColaborador({ form: { ...form, filtering: false } }));

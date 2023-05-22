@@ -1,17 +1,13 @@
 import { all, takeLatest, call, put, select } from "redux-saga/effects";
 import api from "../../../services/api";
 import { updateSala, allSalas as allSalasAction, resetSala } from "./actions";
-import _const from "../../../data/const";
 import types from "./types";
 
 export function* allSalas() {
-  const { form } = yield select((state) => state.sala);
+  const { form, workplaceId } = yield select((state) => state.sala);
   try {
     yield put(updateSala({ form: { ...form, filtering: true } }));
-    const { data: res } = yield call(
-      api.get,
-      `/sala/workplace/${_const.workplaceId}`
-    );
+    const { data: res } = yield call(api.get, `/sala/workplace/${workplaceId}`);
 
     yield put(updateSala({ form: { ...form, filtering: false } }));
 
@@ -58,7 +54,7 @@ export function* filterSala() {
 }
 
 export function* addSala() {
-  const { form, sala, components, behavior } = yield select(
+  const { form, sala, components, behavior, workplaceId } = yield select(
     (state) => state.sala
   );
   try {
@@ -70,14 +66,16 @@ export function* addSala() {
       "sala",
       JSON.stringify({
         ...sala,
-        workplaceId: _const.workplaceId,
-        especialidades: [sala.especialidades],
+        workplaceId,
       })
     );
-    formData.append("workplaceId", _const.workplaceId);
+    formData.append("workplaceId", workplaceId);
     sala.arquivos.map((a, i) => {
       formData.append(`arquivo_${i}`, a);
     });
+    let arrayEspecialidades = JSON.stringify({ _id: sala.especialidades });
+
+    formData.append("especialidades", arrayEspecialidades);
 
     const { data: res } = yield call(
       api[behavior === "create" ? "post" : "put"],
@@ -153,10 +151,34 @@ export function* removeArquivo({ key }) {
   }
 }
 
+export function* allServicos() {
+  const { form, workplaceId } = yield select((state) => state.sala);
+  try {
+    yield put(updateSala({ form: { ...form, filtering: true } }));
+    const { data: res } = yield call(
+      api.get,
+      `/workplace/servicos/${workplaceId}`
+    );
+
+    yield put(updateSala({ form: { ...form, filtering: false } }));
+
+    if (res.error) {
+      alert(res.message);
+      return false;
+    }
+
+    yield put(updateSala({ servicos: res.servicos }));
+  } catch (err) {
+    yield put(updateSala({ form: { ...form, filtering: false } }));
+    alert(err.message);
+  }
+}
+
 export default all([
   takeLatest(types.ALL_SALAS, allSalas),
   takeLatest(types.FILTER_SALA, filterSala),
   takeLatest(types.ADD_SALA, addSala),
   takeLatest(types.REMOVE_SALA, removeSala),
   takeLatest(types.REMOVE_ARQUIVO, removeArquivo),
+  takeLatest(types.ALL_SERVICOS, allServicos),
 ]);

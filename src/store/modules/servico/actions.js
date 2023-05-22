@@ -39,6 +39,7 @@ export function removeServico() {
 
 export function removeArquivo(key) {
   return {
-    type: types.REMOVE_ARQUIVO, key
+    type: types.REMOVE_ARQUIVO,
+    key,
   };
 }

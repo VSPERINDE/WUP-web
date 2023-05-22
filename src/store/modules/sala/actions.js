@@ -39,6 +39,13 @@ export function removeSala() {
 
 export function removeArquivo(key) {
   return {
-    type: types.REMOVE_ARQUIVO, key
+    type: types.REMOVE_ARQUIVO,
+    key,
+  };
+}
+
+export function allServicos() {
+  return {
+    type: types.ALL_SERVICOS,
   };
 }

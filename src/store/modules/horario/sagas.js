@@ -5,16 +5,16 @@ import {
   allHorarios as allHorariosAction,
   resetHorario,
 } from "./actions";
-import _const from "../../../data/const";
+
 import types from "./types";
 
 export function* allHorarios() {
-  const { form } = yield select((state) => state.colaborador);
+  const { form, workplaceId } = yield select((state) => state.colaborador);
   try {
     yield put(updateHorario({ form: { ...form, filtering: true } }));
     const { data: res } = yield call(
       api.get,
-      `/horario/workplace/${_const.workplaceId}`
+      `/horario/workplace/${workplaceId}`
     );
 
     yield put(updateHorario({ form: { ...form, filtering: false } }));
@@ -58,7 +58,7 @@ export function* filterColaboradores() {
 }
 
 export function* addHorario() {
-  const { form, horario, components, behavior } = yield select(
+  const { form, horario, components, behavior, workplaceId } = yield select(
     (state) => state.horario
   );
   try {
@@ -68,7 +68,7 @@ export function* addHorario() {
 
     if (behavior === "create") {
       const response = yield call(api.post, "/horario", {
-        workplaceId: _const.workplaceId,
+        workplaceId,
         ...horario,
       });
       res = response.data;
@@ -124,12 +124,12 @@ export function* removeHorario() {
 }
 
 export function* allServicos() {
-  const { form } = yield select((state) => state.horario);
+  const { form, workplaceId } = yield select((state) => state.horario);
   try {
     yield put(updateHorario({ form: { ...form, filtering: true } }));
     const { data: res } = yield call(
       api.get,
-      `/workplace/servicos/${_const.workplaceId}`
+      `/workplace/servicos/${workplaceId}`
     );
 
     yield put(updateHorario({ form: { ...form, filtering: false } }));

@@ -5,16 +5,16 @@ import {
   allClientes as allClientesAction,
   resetCliente,
 } from "./actions";
-import _const from "../../../data/const";
+
 import types from "./types";
 
 export function* allClientes() {
-  const { form } = yield select((state) => state.cliente);
+  const { form, workplaceId } = yield select((state) => state.cliente);
   try {
     yield put(updateCliente({ form: { ...form, filtering: true } }));
     const { data: res } = yield call(
       api.get,
-      `/cliente/workplace/${_const.workplaceId}`
+      `/cliente/workplace/${workplaceId}`
     );
 
     yield put(updateCliente({ form: { ...form, filtering: false } }));
@@ -66,11 +66,13 @@ export function* filterClientes() {
 }
 
 export function* addCliente() {
-  const { form, cliente, components } = yield select((state) => state.cliente);
+  const { form, cliente, components, workplaceId } = yield select(
+    (state) => state.cliente
+  );
   try {
     yield put(updateCliente({ form: { ...form, saving: true } }));
     const { data: res } = yield call(api.post, "/cliente", {
-      workplaceId: _const.workplaceId,
+      workplaceId,
       cliente,
     });
 

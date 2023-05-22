@@ -2,6 +2,7 @@ import { produce } from "immer";
 import types from "./types";
 
 const INITIAL_STATE = {
+  workplaceId: localStorage.getItem("token"),
   behavior: "create", //update
   components: {
     drawer: false,

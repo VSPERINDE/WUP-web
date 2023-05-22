@@ -12,6 +12,7 @@ const INITIAL_STATE = {
     disabled: true,
     saving: false,
   },
+  workplaceId: localStorage.getItem("token"),
   colaboradores: [],
   servicos: [],
   colaborador: {

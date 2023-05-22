@@ -12,16 +12,17 @@ const INITIAL_STATE = {
     disabled: true,
     saving: false,
   },
+  workplaceId: localStorage.getItem("token"),
   salas: [],
+  servicos: [],
   sala: {
-    sala: {
-      tipo: "",
-      mesas: [""],
-      lotacao_max: "",
-      descricao: "",
-    },
+    tipo: "",
+    mesas: "",
+    lotacao_max: "",
+    descricao: "",
     status: "A",
     arquivos: [],
+    especialidades: [],
   },
 };
 
@@ -33,10 +34,9 @@ function sala(state = INITIAL_STATE, action) {
         return draft;
       });
     }
-    case types.RESET_SERVICO: {
+    case types.RESET_SALA: {
       return produce(state, (draft) => {
         draft.sala = INITIAL_STATE.sala;
-        draft.form.disabled = true;
         return draft;
       });
     }

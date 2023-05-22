@@ -5,16 +5,15 @@ import {
   allServicos as allServicosAction,
   resetServico,
 } from "./actions";
-import _const from "../../../data/const";
 import types from "./types";
 
 export function* allServicos() {
-  const { form } = yield select((state) => state.servico);
+  const { form, workplaceId } = yield select((state) => state.servico);
   try {
     yield put(updateServico({ form: { ...form, filtering: true } }));
     const { data: res } = yield call(
       api.get,
-      `/servico/workplace/${_const.workplaceId}`
+      `/servico/workplace/${workplaceId}`
     );
 
     yield put(updateServico({ form: { ...form, filtering: false } }));
@@ -66,7 +65,7 @@ export function* filterServico() {
 }
 
 export function* addServico() {
-  const { form, servico, components, behavior } = yield select(
+  const { form, servico, components, behavior, workplaceId } = yield select(
     (state) => state.servico
   );
   try {
@@ -78,10 +77,10 @@ export function* addServico() {
       "servico",
       JSON.stringify({
         ...servico,
-        workplaceId: _const.workplaceId,
+        workplaceId,
       })
     );
-    formData.append("workplaceId", _const.workplaceId);
+    formData.append("workplaceId", workplaceId);
     servico.arquivos.map((a, i) => {
       formData.append(`arquivo_${i}`, a);
     });
