@@ -1,7 +1,7 @@
 import axios from "axios";
 
 export const api = axios.create({
-  baseURL: "https://workplace-use-pass-api.onrender.com",
+  baseURL: "http://localhost:8000",
 });
 
 export const createSession = (email, senha) =>
