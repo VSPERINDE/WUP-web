@@ -1,7 +1,7 @@
 import React, { useState, useContext } from "react";
 import { Link } from "react-router-dom";
 import { AuthContext } from "./auth.context";
-import { Button, Message } from "rsuite";
+import { Button } from "rsuite";
 
 const Login = () => {
   const { authenticated, login, errorMsg, loading } = useContext(AuthContext);
@@ -13,10 +13,10 @@ const Login = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(user);
-    console.log(password);
     login(user, password);
-    !authenticated ? setShowMessageError(true) : setShowMessageError(false);
+    setTimeout(() => {
+      !authenticated ? setShowMessageError(true) : setShowMessageError(false);
+    }, 2000);
   };
 
   return (
@@ -68,11 +68,7 @@ const Login = () => {
         <Link className="link" to={"/register"}>
           Registre-se
         </Link>
-        {showMessageError ? (
-          <Message showIcon type="error" header="Error">
-            {errorMsg}
-          </Message>
-        ) : null}
+        {showMessageError ? (alert(errorMsg), window.location.reload()) : null}
       </div>
     </div>
   );

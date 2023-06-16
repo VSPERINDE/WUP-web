@@ -29,15 +29,16 @@ export const AuthProvider = ({ children }) => {
       setLoading(true);
       const response = await createSession(email, password);
       const loggedUser = response.data;
+      setUser(loggedUser?.email);
       const token = loggedUser?._id;
       localStorage.setItem("user", JSON.stringify(loggedUser.email));
       localStorage.setItem("token", token);
-      setUser(loggedUser.email);
       navigate("/");
     } catch (error) {
       console.log(error.response.data);
       setErrorMsg(
-        error?.response?.data?.error || "ocorreu um erro ao tentar fazer login"
+        error?.response?.data?.message ||
+          "Ocorreu um erro ao tentar fazer login!"
       );
     } finally {
       setLoading(false);
